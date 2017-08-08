@@ -3,8 +3,8 @@ defmodule Isogram do
   Determines if a word or sentence is an isogram
   """
   @spec isogram?(String.t) :: boolean
-  def isogram?(sentence) do
+  def isogram?(sentence), do: sentence |> normalise |> Kernel.==(sentence |> normalise |> Enum.uniq)
 
-  end
+  defp normalise(sentence), do: sentence |> String.replace(~r/[\s-]/, "") |> String.codepoints 
 
 end
