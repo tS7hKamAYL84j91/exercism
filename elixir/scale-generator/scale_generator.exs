@@ -96,10 +96,9 @@ defmodule ScaleGenerator do
   @spec scale(tonic :: String.t(), pattern :: String.t()) :: list(String.t())
   def scale(tonic, pattern) do
     with  cs <- tonic |> find_chromatic_scale, do:  
-      pattern 
+      [cs |> hd | pattern 
       |> String.codepoints 
-      |> Enum.reduce([cs |> hd], fn stp, acc -> [step(cs, acc |> hd, stp) | acc ] end)
-      |> Enum.reverse
+      |> Enum.scan(cs |> hd, fn stp, acc -> step(cs, acc, stp) end)]
   end
 
 
