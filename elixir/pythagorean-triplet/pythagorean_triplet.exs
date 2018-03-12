@@ -22,13 +22,13 @@ defmodule Triplet do
   Generates a list of pythagorean triplets from a given min (or 1 if no min) to a given max.
   """
   @spec generate(non_neg_integer, non_neg_integer) :: [list(non_neg_integer)]
-  def generate(n, m), do: for a <- n..m, b <- a..m, c <- b..m, a*a + b*b == c*c, do: [a, b, c]
+  def generate(min, max), do: for a <- min..max, b <- a..max, c <- b..max, pythagorean?([a,b,c]), do: [a, b, c]
 
   @doc """
   Generates a list of pythagorean triplets from a given min to a given max, whose values add up to a given sum.
   """
   @spec generate(non_neg_integer, non_neg_integer, non_neg_integer) :: [list(non_neg_integer)]
-  def generate(n, m, s), do: generate(n,m) |> Enum.filter(&sum(&1)==s)
+  def generate(min, max, sum), do: generate(min, max) |> Enum.filter(&sum(&1)==sum)
 
   
 end
