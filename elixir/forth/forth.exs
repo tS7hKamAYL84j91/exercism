@@ -53,7 +53,7 @@ defmodule Forth do
       ),
       do: [
         commands: cmds,
-        pre_process_input_str: (full_input_str <> input_str) |> apply_commands(cmds)
+        pre_process_input_str: full_input_str <> (input_str |> apply_commands(cmds))
       ]
 
   def extract_command(input_str) do
