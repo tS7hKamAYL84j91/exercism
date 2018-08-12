@@ -15,7 +15,7 @@ defmodule TransposeTest do
     assert Transpose.transpose(input) == expected
   end
 
-  @tag :pending
+  #@tag :pending
   test "two characters in a row" do
     input = "AB"
     expected = "A\n" <> "B"
@@ -23,7 +23,7 @@ defmodule TransposeTest do
     assert Transpose.transpose(input) == expected
   end
 
-  @tag :pending
+  #@tag :pending
   test "two characters in one column" do
     input = "A\n" <> "B"
 
@@ -32,7 +32,7 @@ defmodule TransposeTest do
     assert Transpose.transpose(input) == expected
   end
 
-  @tag :pending
+  #@tag :pending
   test "single line" do
     input = "Single line."
 
@@ -44,7 +44,7 @@ defmodule TransposeTest do
     assert Transpose.transpose(input) == expected
   end
 
-  @tag :pending
+  #@tag :pending
   test "first line longer than second line" do
     input = "The fourth line.\n" <> "The fifth line."
 
@@ -61,7 +61,7 @@ defmodule TransposeTest do
     assert Transpose.transpose(input) == expected
   end
 
-  @tag :pending
+  #@tag :pending
   test "second line longer than first line" do
     input = "The first line.\n" <> "The second line."
 
@@ -78,7 +78,7 @@ defmodule TransposeTest do
     assert Transpose.transpose(input) == expected
   end
 
-  @tag :pending
+  #@tag :pending
   test "square" do
     matrix = "HEART\n" <> "EMBER\n" <> "ABUSE\n" <> "RESIN\n" <> "TREND"
 
@@ -87,7 +87,7 @@ defmodule TransposeTest do
     assert Transpose.transpose(matrix) == expected
   end
 
-  @tag :pending
+  #@tag :pending
   test "rectangle" do
     matrix = "FRACTURE\n" <> "OUTLINED\n" <> "BLOOMING\n" <> "SEPTETTE"
 
@@ -97,7 +97,7 @@ defmodule TransposeTest do
     assert Transpose.transpose(matrix) == expected
   end
 
-  @tag :pending
+  #@tag :pending
   test "triangle" do
     matrix = "T\n" <> "EE\n" <> "AAA\n" <> "SSSS\n" <> "EEEEE\n" <> "RRRRRR"
 
@@ -106,7 +106,7 @@ defmodule TransposeTest do
     assert Transpose.transpose(matrix) == expected
   end
 
-  @tag :pending
+  #@tag :pending
   test "many lines" do
     matrix =
       "Chor. Two households, both alike in dignity,\n" <>

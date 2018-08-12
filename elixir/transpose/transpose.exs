@@ -1,3 +1,5 @@
+Code.load_file("../matrix/matrix.exs", __DIR__)
+
 defmodule Transpose do
   @doc """
   Given an input text, output it transposed.
@@ -17,6 +19,15 @@ defmodule Transpose do
   """
 
   @spec transpose(String.t()) :: String.t()
-  def transpose(input) do
+  def transpose(""), do: ""
+  def transpose(input) do 
+    input 
+    |> Matrix.from_string(:string, "") 
+    |> Matrix.columns
+    |> Enum.map(&Enum.map(&1, fn nil -> " "; x -> x end))
+    |> Enum.map(&Enum.join(&1, ""))
+    |> Enum.join("\n")
+    |> String.trim
   end
+
 end

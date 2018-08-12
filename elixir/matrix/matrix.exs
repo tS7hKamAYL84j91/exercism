@@ -6,16 +6,19 @@ defmodule Matrix do
   separated by single spaces, into a `Matrix` struct.
   """
   @spec from_string(input :: String.t()) :: %Matrix{}
-  def from_string(input) do
+  def from_string(input, type \\ :integer, splitter \\ "\s") do
     input 
     |> String.split("\n") # split rows
-    |> Enum.map(&String.split(&1, "\s"))  # split cols
-    |> Enum.map(&matrix_to_integers/1) # coerce
+    |> Enum.map(&String.split(&1, splitter, trim: true))  # split cols
+    |> Enum.map(&matrix_to(type, &1)) # coerce
     |> to_matrix_struct # map to struct
   end
 
   defp to_matrix_struct(input), do: struct(Matrix, matrix: input)
-  defp matrix_to_integers(row), do: row |> Enum.map(&String.to_integer/1)
+  
+  defp matrix_to(:integer, row), do: row |> Enum.map(&String.to_integer/1)
+  defp matrix_to(:string, row), do: row
+  
   @doc """
   Write the `matrix` out as a string, with rows separated by newlines and
   values separated by single spaces.
@@ -47,7 +50,7 @@ defmodule Matrix do
   @spec column(matrix :: %Matrix{}, index :: integer) :: list(integer)
   def column(matrix, index), do: matrix.matrix |> Enum.map(&Enum.at(&1, index))
 
-  defp cols(matrix), do: (matrix.matrix |> hd |> length) - 1
+  defp cols(matrix), do: (matrix.matrix |> Enum.map(&length/1) |> Enum.max) - 1
  
 
 end
