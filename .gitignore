@@ -1,3 +1,5 @@
 _build
 *.dump
 .stack-work
+node_modules
+bs
