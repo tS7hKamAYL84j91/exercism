@@ -3,3 +3,5 @@ _build
 .stack-work
 node_modules
 bs
+bin
+obj
