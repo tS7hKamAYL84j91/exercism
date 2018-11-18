@@ -4,8 +4,8 @@
 var List = require("bs-platform/lib/js/list.js");
 
 function toRna(dna) {
-  var transcribeDnaNucleotide = function (nucleotide) {
-    switch (nucleotide) {
+  var transcribeDnaNucleotide = function (param) {
+    switch (param) {
       case 0 : 
           return /* U */3;
       case 1 : 

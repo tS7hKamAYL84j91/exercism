@@ -11,12 +11,12 @@ type rna =
   | U;
 
 let toRna = dna => {
-  let transcribeDnaNucleotide = (nucleotide: dna): rna =>
-  switch (nucleotide) {
-  | A => U
-  | C => G
-  | G => C
-  | T => A
-  };  
-  dna |> List.map(transcribeDnaNucleotide);
+  let transcribeDnaNucleotide =
+    fun
+    | (A: dna) => U
+    | C => G
+    | G => C
+    | T => A;
+  let fmap_transcribeDna = List.map(transcribeDnaNucleotide);
+  fmap_transcribeDna(dna);
 };
