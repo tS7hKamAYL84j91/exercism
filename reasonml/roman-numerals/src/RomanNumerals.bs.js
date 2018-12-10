@@ -2,176 +2,125 @@
 'use strict';
 
 var List = require("bs-platform/lib/js/list.js");
-var Caml_string = require("bs-platform/lib/js/caml_string.js");
+var $$String = require("bs-platform/lib/js/string.js");
+var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
+var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 
 function toRoman(input) {
-  var explode = function (s) {
-    var _i = s.length - 1 | 0;
-    var _l = /* [] */0;
-    while(true) {
-      var l = _l;
-      var i = _i;
-      if (i < 0) {
-        return l;
-      } else {
-        _l = /* :: */[
-          Caml_string.get(s, i),
-          l
-        ];
-        _i = i - 1 | 0;
-        continue ;
-      }
-    };
+  var numberNumeralOccurances = function (param, elem) {
+    var residual = param[1];
+    return /* tuple */[
+            /* :: */[
+              /* tuple */[
+                Caml_int32.div(residual, elem[0]),
+                elem[1]
+              ],
+              param[0]
+            ],
+            Caml_int32.mod_(residual, elem[0])
+          ];
   };
-  var numerals = function (param) {
-    if (param) {
-      var exit = 0;
-      var switcher = param[0] - 67 | 0;
-      if (switcher > 21 || switcher < 0) {
-        exit = 1;
-      } else {
-        switch (switcher) {
-          case 0 : 
-              var xs = param[1];
-              if (xs) {
-                var match = xs[0];
-                if (match !== 68) {
-                  if (match !== 77) {
-                    return /* :: */[
-                            100,
-                            numerals(xs)
-                          ];
-                  } else {
-                    return /* :: */[
-                            900,
-                            numerals(xs[1])
-                          ];
-                  }
-                } else {
-                  return /* :: */[
-                          400,
-                          numerals(xs[1])
-                        ];
-                }
-              } else {
-                return /* :: */[
-                        100,
-                        numerals(xs)
-                      ];
-              }
-          case 6 : 
-              var xs$1 = param[1];
-              if (xs$1) {
-                var switcher$1 = xs$1[0] - 86 | 0;
-                if (switcher$1 > 2 || switcher$1 < 0) {
-                  return /* :: */[
-                          1,
-                          numerals(xs$1)
-                        ];
-                } else {
-                  switch (switcher$1) {
-                    case 0 : 
-                        return /* :: */[
-                                4,
-                                numerals(xs$1[1])
-                              ];
-                    case 1 : 
-                        return /* :: */[
-                                1,
-                                numerals(xs$1)
-                              ];
-                    case 2 : 
-                        return /* :: */[
-                                9,
-                                numerals(xs$1[1])
-                              ];
-                    
-                  }
-                }
-              } else {
-                return /* :: */[
-                        1,
-                        numerals(xs$1)
-                      ];
-              }
-          case 9 : 
-              return /* :: */[
-                      50,
-                      numerals(param[1])
-                    ];
-          case 10 : 
-              return /* :: */[
-                      1000,
-                      numerals(param[1])
-                    ];
-          case 19 : 
-              return /* :: */[
-                      5,
-                      numerals(param[1])
-                    ];
-          case 1 : 
-          case 2 : 
-          case 3 : 
-          case 4 : 
-          case 5 : 
-          case 7 : 
-          case 8 : 
-          case 11 : 
-          case 12 : 
-          case 13 : 
-          case 14 : 
-          case 15 : 
-          case 16 : 
-          case 17 : 
-          case 18 : 
-          case 20 : 
-              exit = 1;
-              break;
-          case 21 : 
-              var xs$2 = param[1];
-              if (xs$2) {
-                var match$1 = xs$2[0];
-                if (match$1 !== 67) {
-                  if (match$1 !== 76) {
-                    return /* :: */[
-                            10,
-                            numerals(xs$2)
-                          ];
-                  } else {
-                    return /* :: */[
-                            40,
-                            numerals(xs$2[1])
-                          ];
-                  }
-                } else {
-                  return /* :: */[
-                          90,
-                          numerals(xs$2[1])
-                        ];
-                }
-              } else {
-                return /* :: */[
-                        10,
-                        numerals(xs$2)
-                      ];
-              }
-          
-        }
-      }
-      if (exit === 1) {
-        return /* :: */[
-                0,
-                numerals(param[1])
-              ];
-      }
-      
-    } else {
+  var fillList = function (element, length) {
+    if (length <= 0) {
       return /* [] */0;
+    } else {
+      return /* :: */[
+              element,
+              fillList(element, length - 1 | 0)
+            ];
     }
   };
-  return String(List.fold_left((function (prim, prim$1) {
-                    return prim + prim$1 | 0;
-                  }), 0, numerals(explode(String(input)))));
+  return $$String.concat("", List.flatten(List.map((function (param) {
+                        return fillList(param[1], param[0]);
+                      }), List.rev(List.fold_left(numberNumeralOccurances, /* tuple */[
+                                /* [] */0,
+                                input
+                              ], List.sort((function (a, b) {
+                                      var match = Caml_obj.caml_lessequal(a, b);
+                                      if (match) {
+                                        return 1;
+                                      } else {
+                                        return 0;
+                                      }
+                                    }), /* :: */[
+                                    /* tuple */[
+                                      1,
+                                      "I"
+                                    ],
+                                    /* :: */[
+                                      /* tuple */[
+                                        4,
+                                        "IV"
+                                      ],
+                                      /* :: */[
+                                        /* tuple */[
+                                          5,
+                                          "V"
+                                        ],
+                                        /* :: */[
+                                          /* tuple */[
+                                            9,
+                                            "IX"
+                                          ],
+                                          /* :: */[
+                                            /* tuple */[
+                                              10,
+                                              "X"
+                                            ],
+                                            /* :: */[
+                                              /* tuple */[
+                                                40,
+                                                "XL"
+                                              ],
+                                              /* :: */[
+                                                /* tuple */[
+                                                  50,
+                                                  "L"
+                                                ],
+                                                /* :: */[
+                                                  /* tuple */[
+                                                    90,
+                                                    "XC"
+                                                  ],
+                                                  /* :: */[
+                                                    /* tuple */[
+                                                      100,
+                                                      "C"
+                                                    ],
+                                                    /* :: */[
+                                                      /* tuple */[
+                                                        400,
+                                                        "CD"
+                                                      ],
+                                                      /* :: */[
+                                                        /* tuple */[
+                                                          500,
+                                                          "D"
+                                                        ],
+                                                        /* :: */[
+                                                          /* tuple */[
+                                                            900,
+                                                            "CM"
+                                                          ],
+                                                          /* :: */[
+                                                            /* tuple */[
+                                                              1000,
+                                                              "M"
+                                                            ],
+                                                            /* [] */0
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                                  ]
+                                                ]
+                                              ]
+                                            ]
+                                          ]
+                                        ]
+                                      ]
+                                    ]
+                                  ]))[0]))));
 }
 
 exports.toRoman = toRoman;

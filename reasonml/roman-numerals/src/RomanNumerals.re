@@ -1,28 +1,39 @@
 let toRoman = input => {
-  
-let explode = s => {
-  let rec exp = (i, l) => switch (i,l) {
-  | (i, l) when i < 0 => l
-  | (i, l) => exp(i - 1, [s.[i], ...l])
-  };   
-  exp(String.length(s) - 1, []);
-};
+  let numerals = [
+    (1, "I"),
+    (4, "IV"),
+    (5, "V"),
+    (9, "IX"),
+    (10, "X"),
+    (40, "XL"),
+    (50, "L"),
+    (90, "XC"),
+    (100, "C"),
+    (400, "CD"),
+    (500, "D"),
+    (900, "CM"),
+    (1000, "M"),
+  ];
 
-let rec numerals = fun
-  | [] => []
-  | ['I', 'V', ...xs] => [4, ...numerals(xs)]
-  | ['I', 'X', ...xs] => [9, ...numerals(xs)]
-  | ['X', 'L', ...xs] => [40, ...numerals(xs)]
-  | ['X', 'C', ...xs] => [90, ...numerals(xs)]
-  | ['C', 'D', ...xs] => [400, ...numerals(xs)]
-  | ['C', 'M', ...xs] => [900, ...numerals(xs)]
-  | ['I', ...xs] => [1, ...numerals(xs)]
-  | ['V', ...xs] => [5, ...numerals(xs)]
-  | ['X', ...xs] => [10, ...numerals(xs)]
-  | ['L', ...xs] => [50, ...numerals(xs)]
-  | ['C', ...xs] => [100, ...numerals(xs)]
-  | ['M', ...xs] => [1000, ...numerals(xs)]
-  | [_, ...xs] => [0, ...numerals(xs)];
-input |> string_of_int |> explode |> numerals |> List.fold_left((+),0) |> string_of_int;
-};
+  let numberNumeralOccurances = ((roman_numerals, residual), elem) => (
+    [(residual / fst(elem), snd(elem)), ...roman_numerals],
+    residual mod fst(elem),
+  );
 
+  let rec fillList = (element, length) =>
+    switch (element, length) {
+    | (_element, length) when length <= 0 => []
+    | (element, length) => [element, ...fillList(element, length - 1)]
+    };
+
+  numerals
+  |> List.sort((a, b) => a <= b ? 1 : 0)  /* associated list of numerals sorted in decending order */
+  |> List.fold_left(numberNumeralOccurances, ([], input))
+  |> fst  /* drop temp residual value */
+  |> List.rev
+  |> List.map(((numberOfOccurances, numeral)) =>
+       fillList(numeral, numberOfOccurances)
+     )
+  |> List.flatten
+  |> String.concat("");
+};
