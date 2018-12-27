@@ -1,0 +1,17 @@
+B /Users/jim/.opam/system/lib/base
+B /Users/jim/.opam/system/lib/base/caml
+B /Users/jim/.opam/system/lib/base/shadow_stdlib
+B /Users/jim/.opam/system/lib/bytes
+B /Users/jim/.opam/system/lib/oUnit
+B /Users/jim/.opam/system/lib/sexplib0
+B /usr/local/lib/ocaml
+B _build/default/.test.eobjs
+S /Users/jim/.opam/system/lib/base
+S /Users/jim/.opam/system/lib/base/caml
+S /Users/jim/.opam/system/lib/base/shadow_stdlib
+S /Users/jim/.opam/system/lib/bytes
+S /Users/jim/.opam/system/lib/oUnit
+S /Users/jim/.opam/system/lib/sexplib0
+S /usr/local/lib/ocaml
+S .
+FLG -w @a-4-29-40-41-42-44-45-48-58-59-60-40 -strict-sequence -strict-formats -short-paths -keep-locs
