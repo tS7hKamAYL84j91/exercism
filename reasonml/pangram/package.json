@@ -1,0 +1,22 @@
+{
+  "name": "exercism-reasonml",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world",
+    "test": "jest --watchAll --env=node",
+    "test:ci": "jest --ci --bail --no-cache --env=node"
+  },
+  "keywords": [
+    "BuckleScript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@glennsl/bs-jest": "^0.4.2",
+    "bs-platform": "^4.0.6"
+  },
+  "description": "Determine if a sentence is a pangram. A pangram (Greek: παν γράμμα, pan gramma, \"every letter\") is a sentence using every letter of the alphabet at least once. The best known English pangram is: > The quick brown fox jumps over the lazy dog.",
+  "main": "index.js"
+}
