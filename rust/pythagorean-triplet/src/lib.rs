@@ -7,7 +7,8 @@ pub fn find() -> Option<u32> {
   .flat_map(move |a| (a..max_triple)
     .flat_map(move |b| (b..max_triple)
       .map(move |c| (a,b,c))))
-  .filter(|&z| is_pythagorean(z));
+  .filter(|&z| is_pythagorean(z))
+  ;
 
   pythagorean_triples(n)
   .filter(move |&(a,b,c)| a+b+c == n)
