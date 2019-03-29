@@ -1,9 +1,6 @@
 function count_nucleotides(strand::AbstractString)
-  counters = Dict('A' => 0, 'C' => 0, 'G' => 0, 'T' => 0)
-
-  nucleotide_counter(acc, x) =
-    if (x in Base.keys(acc)) Base.merge(acc, Base.Dict(x => acc[x] + 1)) else throw(DomainError(nothing)) end
-  
-  collect(strand) |> xs -> reduce(nucleotide_counter, xs,  init=counters)
+  counters = Dict(['A', 'C', 'G', 'T'] .=> 0)
+  reducer(acc, x) =  x in keys(acc) ? merge(acc, Dict(x => acc[x] + 1)) : throw(DomainError(nothing))
+  collect(strand) |> xs -> reduce(reducer, xs, init=counters)
 end
 
