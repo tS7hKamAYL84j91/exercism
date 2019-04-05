@@ -1,3 +1,4 @@
+EXCLUDE_QUERY_DIR
 B /Users/jim/.opam/system/lib/base
 B /Users/jim/.opam/system/lib/base/caml
 B /Users/jim/.opam/system/lib/base/shadow_stdlib
@@ -5,7 +6,7 @@ B /Users/jim/.opam/system/lib/bytes
 B /Users/jim/.opam/system/lib/oUnit
 B /Users/jim/.opam/system/lib/sexplib0
 B /usr/local/lib/ocaml
-B _build/default/.test.eobjs
+B _build/default/.test.eobjs/byte
 S /Users/jim/.opam/system/lib/base
 S /Users/jim/.opam/system/lib/base/caml
 S /Users/jim/.opam/system/lib/base/shadow_stdlib
