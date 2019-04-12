@@ -1,7 +1,7 @@
 ispangram(input::AbstractString) = (input 
     |> lowercase 
-    |> s -> replace(s, r"[^a-z]" => "") 
+    |> s->replace(s, r"[^a-z]" => "") 
     |> collect 
     |> unique 
-    |> length) == 26
+    |> sort) == 'a':'z'
 
