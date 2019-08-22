@@ -9,6 +9,7 @@ isname(x) = occursin(r"^[A-Z]{2}[0-9]{3}$", x)
 
 @testset "one robot" begin
     global r1 = Robot()
+    #@show r1
     push!(history, r1.name)
 
     @testset "name of robot is valid" begin
@@ -17,6 +18,7 @@ isname(x) = occursin(r"^[A-Z]{2}[0-9]{3}$", x)
 
     @testset "names of robot instance are valid and unique in history" for i = 1:100
         reset!(r1)
+        #@show r1
         @test isname(r1.name)
         @test !in(r1.name, history)
         push!(history, r1.name)

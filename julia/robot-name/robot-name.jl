@@ -1,15 +1,11 @@
-using Random
+using Random, Dates
 
-seq(xs,l) = xs |> collect |> xs->Random.randstring(xs,l)
-rand_name() = seq('A':'Z',2) * seq('1':'9',3)
+rng = now() |> millisecond |> MersenneTwister
+rand_name() = Random.randstring(rng, 'A':'Z', 2) * Random.randstring(rng, '1':'9', 3)
 
 mutable struct Robot
-  name:: String
-  Robot() = new(rand_name())
+    name::String
+    Robot() = new(rand_name())
 end
 
-function reset!(instance::Robot)
-  instance.name = rand_name()
-  instance
-end
-
+reset!(instance::Robot) = instance.name = rand_name();
