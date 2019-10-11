@@ -1,3 +1,4 @@
+/* comment */
 let rec accumulate = (f, xs) =>
   switch (xs) {
   | [] => []

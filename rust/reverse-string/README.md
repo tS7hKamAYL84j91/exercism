@@ -1,18 +1,26 @@
-# Hello World
+# Reverse String
 
-The classical introductory exercise. Just say "Hello, World!".
+Reverse a string
 
-["Hello, World!"](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program) is
-the traditional first program for beginning programming in a new language
-or environment.
+For example:
+input: "cool"
+output: "looc"
 
-The objectives are simple:
+## Bonus
+Test your function on this string: `uüu` and see what happens. Try to write a function that properly
+reverses this string. Hint: grapheme clusters
 
-- Write a function that returns the string "Hello, World!".
-- Run the test suite and make sure that it succeeds.
-- Submit your solution and check it at the website.
+To get the bonus test to run, remove the ignore flag (`#[ignore]`) from the
+last test, and execute the tests with:
 
-If everything goes well, you will be ready to fetch your first real exercise.
+```bash
+$ cargo test --features grapheme
+```
+
+You will need to use external libraries (a `crate` in rust lingo) for the bonus task. A good place to look for those is [crates.io](https://crates.io/), the official repository of crates.
+
+[Check the documentation](https://doc.rust-lang.org/cargo/guide/dependencies.html) for instructions on how to use external crates in your projects.
+
 
 ## Rust Installation
 
@@ -89,7 +97,7 @@ If you want to know more about Exercism, take a look at the [contribution guide]
 
 ## Source
 
-This is an exercise to introduce users to using Exercism [http://en.wikipedia.org/wiki/%22Hello,_world!%22_program](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program)
+Introductory challenge to reverse an input string [https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
