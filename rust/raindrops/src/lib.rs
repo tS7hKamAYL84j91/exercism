@@ -1,16 +1,13 @@
 pub fn raindrops(n: u32) -> String {
-  let drops: [(u32, &'static str); 3] = [(3, "Pling"), (5, "Plang"), (7, "Plong")];
-  let sound_of_rain = |sound, (drop, drop_sound)| if sound % drop == 0 { drop_sound } else { "" };
-  let default_sound = |rain: String, number: u32| match rain.as_str() {
-    "" => number.to_string(),
-    _ => rain,
+  let drops = [(3, "Pling"), (5, "Plang"), (7, "Plong")];
+
+  let sound_of_the_rain = |sound: Option<String>, &(drop, drop_sound)| match n % drop {
+    0 => Some(sound.unwrap_or(String::new()) + drop_sound),
+    _ => sound,
   };
 
-  default_sound(
-    drops
-      .iter()
-      .map(|s| -> &str { sound_of_rain(n, *s) })
-      .collect::<String>(),
-    n,
-  )
+  drops
+    .iter()
+    .fold(None, sound_of_the_rain)
+    .unwrap_or(n.to_string())
 }
