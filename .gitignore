@@ -5,3 +5,12 @@ node_modules
 bs
 bin
 obj
+.fake
+.ionide
+.calva
+.cpcache
+cljs-test-runner-out
+.exercism
+.config
+.psc-ide-port
+symbolCache.db
