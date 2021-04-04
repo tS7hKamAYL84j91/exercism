@@ -14,3 +14,4 @@ cljs-test-runner-out
 .config
 .psc-ide-port
 symbolCache.db
+.cljs_node_repl
