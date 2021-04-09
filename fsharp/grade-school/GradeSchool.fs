@@ -5,18 +5,12 @@ type School = Map<int, string list>
 let empty : School = Map.empty<int, string list>
 
 let add (student: string) (grade: int) (school: School) : School =
-    let addStudentToClass student students =
-        match students with
-        | Some students -> Some(List.sort (student :: students))
-        | None -> Some(student :: [])
+    match Map.tryFind grade school with
+    | Some students -> Map.add grade (List.sort (student :: students)) school
+    | None -> Map.add grade [ student ] school
 
-    Map.change grade (addStudentToClass student) school
-
-let roster (school: School) =
-    Map.fold (fun acc _ students -> acc @ students) [] school
+let roster (school: School) = Map.toList school |> List.collect snd
 
 let grade (number: int) (school: School) : string list =
-    if Map.containsKey number school then
-        Map.find number school
-    else
-        []
+    Map.tryFind number school
+    |> Option.defaultValue []
