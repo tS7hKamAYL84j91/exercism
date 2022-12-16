@@ -1,3 +1,3 @@
 ﻿module HelloWorld
 
-let hello : string = "Hello, World!"
+let hello: string = "Hello, World!"
