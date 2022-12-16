@@ -1,5 +1,8 @@
 {
   "editor.tabSize": 2,
   "git.ignoreLimitWarning": true,
-  "jupyter.jupyterServerType": "local"
+  "jupyter.jupyterServerType": "local",
+  "FSharp.inlayHints.typeAnnotations": false,
+  "FSharp.inlayHints.enabled": false,
+  "FSharp.inlayHints.parameterNames": false
 }
