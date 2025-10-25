@@ -15,3 +15,24 @@ cljs-test-runner-out
 .psc-ide-port
 symbolCache.db
 .cljs_node_repl
+
+# macOS ignores
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.VolumeIcon.icns
+
+# Linux ignores
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
+*.log
+
+# Project specific
+common-lisp/
